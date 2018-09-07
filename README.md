@@ -11,7 +11,6 @@ It is developed using React ,react-router, Context API along with the help of mu
 
 <li>Install node modules as shown below:</li>
 
-<br>
 ```npm install```
 
 <li>Run project as shown below:</li>

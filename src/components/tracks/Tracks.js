@@ -11,7 +11,7 @@ class Tracks extends Component {
       <Consumer>
         {value => {
 
-          console.log(value);
+         // console.log(value);
           if(value.track_list===undefined || value.track_list.length===0){
 
             return  (
