@@ -10,26 +10,27 @@ class Lyrics extends Component {
   };
   componentDidMount() {
     {
+      console.log(this.props.match.params);
       axios
         .get(
-          `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=15953433&apikey=${
-            process.env.REACT_APP_KEY
-          }`
+          `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=${
+            this.props.match.params.id
+          }&apikey=${process.env.REACT_APP_KEY}`
         )
         .then(res => {
-          console.log(res);
+          // console.log(res);
           this.setState({ lyrics: res.data.message.body.lyrics });
 
           return axios.get(
-            `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.get?track_id=15953433&apikey=${
-              process.env.REACT_APP_KEY
-            }`
+            `https://cors-anywhere.herokuapp.com/http://api.musixmatch.com/ws/1.1/track.get?track_id=${
+              this.props.match.params.id
+            }&apikey=${process.env.REACT_APP_KEY}`
           );
         })
         .then(res => {
           this.setState({ track: res.data.message.body.track });
 
-          console.log(res.data);
+          //console.log(res.data);
         })
         .catch(err => {
           console.log(err);
@@ -39,6 +40,7 @@ class Lyrics extends Component {
 
   render() {
     const { track, lyrics } = this.state;
+
     if (
       track === undefined ||
       lyrics === undefined ||
@@ -47,7 +49,6 @@ class Lyrics extends Component {
     ) {
       return <Spinner />;
     } else {
-      // console.log(track)
       return (
         <React.Fragment>
           <Link to="/" className="btn btn-dark btn-sm mb-4">
@@ -67,18 +68,13 @@ class Lyrics extends Component {
               <li className="list-group-item">
                 <strong>Album ID</strong> : {track.album_id}
               </li>
-              <li className="list-group-item">
-                <strong>Music Genre</strong> :{" "}
-                {
-                  track.primary_genres.music_genre_list[0].music_genre
-                    .music_genre_name
-                }
-              </li>
 
               <li className="list-group-item">
                 <strong> Release Date </strong> :
                 <Moment format="MM/DD/YY">{track.first_release_date}</Moment>
               </li>
+
+              <div style={{ height: 50 }} />
             </ul>
           </div>
         </React.Fragment>
@@ -88,3 +84,7 @@ class Lyrics extends Component {
 }
 
 export default Lyrics;
+// {
+//   track.primary_genres.music_genre_list[0].music_genre
+//     .music_genre_name
+// }

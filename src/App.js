@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 import Index from "./components/layout/Index";
 import Lyrics from "./components/tracks/Lyrics";
 
@@ -11,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <Provider>
-        <Router>
+        <HashRouter>
           <React.Fragment>
             <Navbar />
 
@@ -21,8 +22,9 @@ class App extends Component {
                 <Route exact path="/lyrics/track/:id" component={Lyrics} />
               </Switch>
             </div>
+            <Footer/>
           </React.Fragment>
-        </Router>
+        </HashRouter>
       </Provider>
     );
   }

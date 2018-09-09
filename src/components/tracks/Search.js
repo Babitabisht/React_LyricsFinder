@@ -8,7 +8,7 @@ export class Search extends Component {
   };
 
   onChange = e =>{
-      this.setState({[e.target.name] :e.target.value})
+      this.setState({[e.target.name] : e.target.value})
   };
 
   findTrack =(dispatch,e ) =>{
@@ -45,7 +45,7 @@ export class Search extends Component {
           return (
             <div className="card card-body mb-4 p-4">
               <h1 className="display-4 text-center">
-                <i className="fas fa-music">Search For A song</i>
+                <i className="fas fa-music">&nbsp; Search For  song</i>
 
                 <p className="lead text-center">Get the lyric of any song</p>
 
